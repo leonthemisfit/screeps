@@ -1,5 +1,5 @@
 var roles = {
-    harvester: role_harvester
+    harvester: require("role.harvester")
 }
 
 module.exports.loop = () => {
