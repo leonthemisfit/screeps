@@ -12,4 +12,8 @@ util.try_transfer_energy = (creep, target) => creep.transfer(target, RESOURCE_EN
 
 util.try_spawn = (spawner, name, type, role) => spawner.spawnCreep(creep_types[type], name, { memory: { role: role } })
 
+util.try_upgrade = (creep, controller) => creep.upgradeController(controller) != ERR_NOT_IN_RANGE;
+
+util.is_spawner_full = (spawner) => spawner.energy == spawner.energyCapacity;
+
 module.exports = util;
