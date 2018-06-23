@@ -1,5 +1,6 @@
 var util = require("util");
 var creeps = require("creeps");
+var cost = require("build_cost");
 
 var roles = {
     harvester: require("role.harvester"),
@@ -18,6 +19,14 @@ var worker_filter = (creep) => worker_roles.includes(creep.memory.role);
 
 var worker_spawns = [creeps.hard_worker, creeps.balanced_worker, creeps.better_worker, creeps.basic_worker];
 
+function log_spawn(template) {
+    var msg = "Created new creep of type '";
+    msg += template.name;
+    msg += "' with an energy cost of ";
+    msg += cost.calculate_cost(template.body);
+    console.log(msg);
+}
+
 function autospawn() {
     var workers = _.filter(Game.creeps, worker_filter);
     var spawner = Game.spawns.Main;
@@ -28,7 +37,7 @@ function autospawn() {
                 var name = WORKER_NAME + worker_id++;
                 if (util.try_spawn(spawner, name, template.body, DEFAULT_ROLE)) {
                     Game.creeps[name].memory.type = template.name;
-                    console.log("Created new creep of type '" + template.name + "'");
+                    log_spawn();
                 }
                 break;
             }
