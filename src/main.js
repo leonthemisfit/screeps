@@ -46,7 +46,7 @@ function autospawn() {
                 var name = WORKER_NAME + worker_id++;
                 if (util.try_spawn(spawner, name, template.body, DEFAULT_ROLE)) {
                     Game.creeps[name].memory.type = template.name;
-                    log_spawn();
+                    log_spawn(template);
                 }
                 break;
             }
