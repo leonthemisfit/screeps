@@ -16,4 +16,12 @@ util.is_spawner_full = (spawner) => spawner.energy == spawner.energyCapacity;
 
 util.is_spawning = (spawner) => spawner.spawning != null;
 
+util.clean_memory = () => {
+    for (var name in Memory.creeps) {
+        if (!Game.creeps[name]) {
+            delete Memory.creeps[name];
+        }
+    }
+}
+
 module.exports = util;
