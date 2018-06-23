@@ -11,7 +11,7 @@ var roles = {
 const WORKER_LIMIT = 3;
 const DEFAULT_ROLE = "harvester";
 const WORKER_NAME = "worker_";
-const DECAY_THRESHOLD = 3000;
+const DECAY_THRESHOLD = 5000;
 
 var worker_id = 20;
 
