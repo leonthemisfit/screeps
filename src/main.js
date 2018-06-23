@@ -8,7 +8,7 @@ var roles = {
     builder: require("role.builder")
 }
 
-const WORKER_LIMIT = 2;
+const WORKER_LIMIT = 3;
 const DEFAULT_ROLE = "harvester";
 const WORKER_NAME = "worker_";
 const DECAY_THRESHOLD = 3000;
