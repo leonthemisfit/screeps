@@ -13,8 +13,8 @@ function harvest(creep) {
 }
 
 function run(creep) {
-    creep.memory.mode = creep.memory.upgrade_mode == modes.upgrading && creep.energy > 0 ? modes.upgrading : modes.harvest;
-    if (creep.memory.mode == modes.harvesting && util.can_harvest_energy(creep)) {
+    creep.memory.upgrade_mode = creep.memory.upgrade_mode == modes.upgrading && creep.energy > 0 ? modes.upgrading : modes.harvest;
+    if (creep.memory.upgrade_mode == modes.harvesting && util.can_harvest_energy(creep)) {
         harvest(creep);
     }
     else {
