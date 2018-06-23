@@ -20,7 +20,7 @@ util.is_spawner_full = (spawner) => spawner.energy == spawner.energyCapacity;
 
 util.is_spawning = (spawner) => spawner.spawning != null;
 
-util.can_spawn = (spawner, parts) => spawner.energy >= build_cost.calculate_cost(parts);
+util.can_spawn = (spawner, parts) => spawner.spawnCreep(parts, "test", { dryRun: true }) == 0;
 
 util.is_construction = (creep) => util.find_construction(creep) ? true : false;
 
