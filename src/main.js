@@ -16,7 +16,7 @@ var worker_id = 20;
 var worker_roles = ["harvester", "upgrader", "builder"];
 var worker_filter = (creep) => worker_roles.includes(creep.memory.role);
 
-var worker_spawns = [creeps.hard_worker, creeps.better_worker, creeps.basic_worker];
+var worker_spawns = [creeps.hard_worker, creeps.balanced_worker, creeps.better_worker, creeps.basic_worker];
 
 function autospawn() {
     var workers = _.filter(Game.creeps, worker_filter);
