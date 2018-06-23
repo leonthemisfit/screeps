@@ -1,3 +1,5 @@
+var build_cost = require("build_cost");
+
 var util = {};
 
 util.find_source = (creep) => creep.room.find(FIND_SOURCES)[0];
@@ -15,6 +17,8 @@ util.try_upgrade = (creep, controller) => creep.upgradeController(controller) !=
 util.is_spawner_full = (spawner) => spawner.energy == spawner.energyCapacity;
 
 util.is_spawning = (spawner) => spawner.spawning != null;
+
+util.can_spawn = (spawner, parts) => spawner.energy >= build_cost.calculate_cost(parts);
 
 util.clean_memory = () => {
     for (var name in Memory.creeps) {
