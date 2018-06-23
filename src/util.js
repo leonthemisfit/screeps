@@ -16,4 +16,6 @@ util.try_upgrade = (creep, controller) => creep.upgradeController(controller) !=
 
 util.is_spawner_full = (spawner) => spawner.energy == spawner.energyCapacity;
 
+util.is_spawning = (spawner) => spawner.spawning != null;
+
 module.exports = util;
