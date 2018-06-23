@@ -22,7 +22,7 @@ function run(creep) {
         var structs = creep.room.find(FIND_STRUCTURES, { filter: struct_filter });
         if (structs.length > 0) {
             if (!util.try_transfer_energy(creep, structs[0])) {
-                creep.moveTo(structs[0])
+                creep.moveTo(structs[0]);
             }
         }
     }
