@@ -12,19 +12,17 @@ function harvest(creep) {
     }
 }
 
+function check_mode(creep) {
+    if (creep.build_mode == modes.harvesting) {
+        creep.build_mode = util.can_harvest_energy(creep) ? modes.harvesting : modes.building;
+    }
+    else if (creep.build_mode == modes.building) {
+        creep.build_mode = creep.carry.energy > 0 ? modes.building : modes.harvesting;
+    }
+}
+
 function run(creep) {
-    if (creep.memory.build_mode == modes.harvesting && !util.can_harvest_energy(creep)) {
-        creep.memory.build_mode = modes.building;
-    }
-    else if (creep.memory.build_mode == modes.building && creep.carry.energy == 0) {
-        creep.memory.build_mode = modes.harvesting;
-    }
-    else if (util.can_harvest_energy(creep)) {
-        creep.memory.build_mode = modes.harvesting;
-    }
-    else {
-        creep.memory.build_mode = modes.building;
-    }
+    check_mode(creep);
 
     if (creep.memory.build_mode == modes.harvesting) {
         harvest(creep);
