@@ -1,3 +1,4 @@
 module.exports = {
-    basic_worker: [WORK, CARRY, MOVE]
+    basic_worker: [WORK, CARRY, MOVE],
+    hard_worker: [WORK, WORK, WORK, CARRY, MOVE]
 };
