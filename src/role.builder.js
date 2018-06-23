@@ -20,10 +20,10 @@ function run(creep) {
         creep.memory.build_mode = modes.harvesting;
     }
 
-    if (creep.memory.upgrade_mode == modes.harvesting) {
+    if (creep.memory.build_mode == modes.harvesting) {
         harvest(creep);
     }
-    else if (creep.memory.upgrade_mode == modes.building) {
+    else if (creep.memory.build_mode == modes.building) {
         var construction = util.find_construction(creep);
         if (!util.try_build(creep, construction)) {
             creep.moveTo(construction);
