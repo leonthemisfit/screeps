@@ -13,7 +13,7 @@ var worker_id = 20;
 var worker_roles = ["harvester", "upgrader", "builder"];
 var worker_filter = (creep) => worker_roles.includes(creep.memory.role);
 
-var worker_spawns = [creeps.hard_worker, creeps.basic_worker];
+var worker_spawns = [creeps.hard_worker, creeps.better_worker, creeps.basic_worker];
 
 module.exports.loop = () => {
     util.clean_memory();
