@@ -11,6 +11,8 @@ var worker_id = 20;
 
 var worker_filter = (creep) => creep.memory.role == "harvester" || creep.memory.role == "upgrader";
 
+var worker_spawns = [creeps.hard_worker, creeps.basic_worker];
+
 module.exports.loop = () => {
     util.clean_memory();
 
@@ -22,7 +24,12 @@ module.exports.loop = () => {
         }
         var workers = _.filter(Game.creeps, worker_filter);
         if (workers.length < WORKER_LIMIT) {
-            util.try_spawn(Game.spawns.Main, "worker_" + worker_id++, creeps.basic_worker, "harvester");
+            for (var i in worker_spawns) {
+                var parts = worker_spawns[i];
+                if (util.can_spawn(Game.spawns.Main, parts)) {
+                    util.try_spawn(Game.spawns.Main, "worker_" + worker_id++, parts, "harvester");
+                }
+            }
         }
     }
     else {
