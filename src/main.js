@@ -63,6 +63,7 @@ function role_check() {
         }
         else if (util.is_spawner_full(Game.spawns.Main)) {
             creep.memory.role = util.is_construction(creep) ? "builder" : "upgrader";
+            autospawn();
         }
         else {
             creep.memory.role = "harvester";
