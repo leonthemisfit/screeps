@@ -14,20 +14,18 @@ function struct_filter(structure) {
     return (is_ext || is_spwn) && needs_energy;
 }
 
-var role = {
-    run: (creep) => {
-        if (util.can_harvest_energy(creep)) {
-            harvest(creep);
-        }
-        else {
-            var structs = creep.room.find(FIND_STRUCTURES, { filter: struct_filter });
-            if (structs.length > 0) {
-                if (!util.try_transfer_energy(targets[0])) {
-                    creep.moveTo(targets[0])
-                }
+function run(creep) {
+    if (util.can_harvest_energy(creep)) {
+        harvest(creep);
+    }
+    else {
+        var structs = creep.room.find(FIND_STRUCTURES, { filter: struct_filter });
+        if (structs.length > 0) {
+            if (!util.try_transfer_energy(targets[0])) {
+                creep.moveTo(targets[0])
             }
         }
     }
-};
+}
 
-module.exports = role;
+module.exports = run;

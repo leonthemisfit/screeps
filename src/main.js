@@ -1,4 +1,3 @@
-var role_harvester = require("role.harvester");
 var roles = {
     harvester: role_harvester
 }
@@ -6,7 +5,7 @@ var roles = {
 module.exports.loop = () => {
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        var role = roles[creep.role];
-        role.run(creep);
+        var role = roles[creep.Memory.role];
+        role(creep);
     }
 }
