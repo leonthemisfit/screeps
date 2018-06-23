@@ -5,7 +5,7 @@ var roles = {
 module.exports.loop = () => {
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        var role = roles[creep.Memory.role];
+        var role = roles[creep.memory.role];
         role(creep);
     }
 }
