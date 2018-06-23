@@ -21,8 +21,8 @@ function run(creep) {
     else {
         var structs = creep.room.find(FIND_STRUCTURES, { filter: struct_filter });
         if (structs.length > 0) {
-            if (!util.try_transfer_energy(targets[0])) {
-                creep.moveTo(targets[0])
+            if (!util.try_transfer_energy(structs[0])) {
+                creep.moveTo(structs[0])
             }
         }
     }
