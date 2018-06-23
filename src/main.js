@@ -22,7 +22,7 @@ function autospawn() {
     var workers = _.filter(Game.creeps, worker_filter);
     var spawner = Game.spawns.Main;
     if (workers.length < WORKER_LIMIT) {
-        for (var i in worker_spawns) {
+        for (var i = 0; i < worker_spawns.length; i++) {
             var template = worker_spawns[i];
             if (util.can_spawn(spawner, template.body)) {
                 var name = WORKER_NAME + worker_id++;
