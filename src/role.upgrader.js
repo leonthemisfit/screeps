@@ -16,7 +16,7 @@ function run(creep) {
     if (creep.memory.upgrade_mode == modes.harvesting && !util.can_harvest_energy(creep)) {
         creep.memory.upgrade_mode = modes.upgrading;
     }
-    else if (creep.memory.upgrade_mode == modes.upgrading && creep.energy == 0) {
+    else if (creep.memory.upgrade_mode == modes.upgrading && creep.carry.energy == 0) {
         creep.memory.upgrade_mode = modes.harvesting;
     }
 
