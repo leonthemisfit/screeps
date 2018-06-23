@@ -10,7 +10,7 @@ util.try_harvest = (creep, source) => creep.harvest(source) != ERR_NOT_IN_RANGE;
 
 util.try_transfer_energy = (creep, target) => creep.transfer(target, RESOURCE_ENERGY) != ERR_NOT_IN_RANGE;
 
-util.try_spawn = (spawner, name, creep_type, role) => spawner.spawnCreep(creep_type, name, { memory: { role: role } })
+util.try_spawn = (spawner, name, creep_type, role) => spawner.spawnCreep(creep_type, name, { memory: { role: role } }) == 0;
 
 util.try_upgrade = (creep, controller) => creep.upgradeController(controller) != ERR_NOT_IN_RANGE;
 

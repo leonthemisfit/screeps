@@ -1,6 +1,13 @@
+class CreepTemplate {
+    constructor (body, name) {
+        this.body = body;
+        this.name = name;
+    }
+}
+
 module.exports = {
-    basic_worker: [WORK, CARRY, MOVE],
-    better_worker: [WORK, WORK, CARRY, MOVE],
-    balanced_worker: [WORK, WORK, CARRY, MOVE, MOVE],
-    hard_worker: [WORK, WORK, WORK, CARRY, MOVE]
+    basic_worker: new CreepTemplate([WORK, CARRY, MOVE], "Basic Worker"),
+    better_worker: new CreepTemplate([WORK, WORK, CARRY, MOVE], "Better Worker"),
+    balanced_worker: new CreepTemplate([WORK, WORK, CARRY, MOVE, MOVE], "Balanced Worker"),
+    hard_worker: new CreepTemplate([WORK, WORK, WORK, CARRY, MOVE], "Hard Worker")
 };
