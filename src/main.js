@@ -30,6 +30,7 @@ function autospawn() {
                     Game.creeps[name].memory.type = template.name;
                     console.log("Created new creep of type '" + template.name + "'");
                 }
+                break;
             }
         }
     }
