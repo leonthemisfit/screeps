@@ -14,17 +14,28 @@ util.try_spawn = (spawner, name, creep_type, role) => spawner.spawnCreep(creep_t
 
 util.try_upgrade = (creep, controller) => creep.upgradeController(controller) != ERR_NOT_IN_RANGE;
 
+util.try_build = (creep, target) => creep.build(target) != ERR_NOT_IN_RANGE;
+
 util.is_spawner_full = (spawner) => spawner.energy == spawner.energyCapacity;
 
 util.is_spawning = (spawner) => spawner.spawning != null;
 
 util.can_spawn = (spawner, parts) => spawner.energy >= build_cost.calculate_cost(parts);
 
+util.is_construction = (creep) => util.find_construction(creep) ? true : false;
+
 util.clean_memory = () => {
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
             delete Memory.creeps[name];
         }
+    }
+}
+
+util.find_construction = (creep) => {
+    var construction = creep.room.find(FIND_CONSTRUCTION_SITES);
+    if (construction.length > 0) {
+        return construction[0];
     }
 }
 
