@@ -7,7 +7,9 @@ var roles = {
 }
 
 const WORKER_LIMIT = 2;
-var worker_id = 10;
+var worker_id = 20;
+
+var worker_filter = (creep) => creep.memory.role == "harvester" || creep.memory.role == "upgrader";
 
 module.exports.loop = () => {
     util.clean_memory();
@@ -18,7 +20,8 @@ module.exports.loop = () => {
             var creep = harvesters[i];
             creep.memory.role = "upgrader";
         }
-        if (harvesters.length < WORKER_LIMIT && !util.is_spawning(Game.spawns.Main)) {
+        var workers = _.filter(Game.creeps, worker_filter);
+        if (workers.length < WORKER_LIMIT) {
             util.try_spawn(Game.spawns.Main, "worker_" + worker_id++, creeps.basic_worker, "harvester");
         }
     }
