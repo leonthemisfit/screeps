@@ -6,12 +6,12 @@ var roles = {
     upgrader: require("role.upgrader")
 }
 
-const WORKER_LIMIT = 5;
+const WORKER_LIMIT = 2;
 var worker_id = 10;
 
 module.exports.loop = () => {
     util.clean_memory();
-    
+
     if (util.is_spawner_full(Game.spawns.Main)) {
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == "harvester");
         for (var i in harvesters) {
