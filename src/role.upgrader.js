@@ -13,14 +13,23 @@ function harvest(creep) {
 }
 
 function run(creep) {
-    creep.memory.upgrade_mode = creep.memory.upgrade_mode == modes.upgrading && creep.energy > 0 ? modes.upgrading : modes.harvest;
-    if (creep.memory.upgrade_mode == modes.harvesting && util.can_harvest_energy(creep)) {
+    if (creep.memory.upgrade_mode == modes.harvesting && !util.can_harvest_energy(creep)) {
+        creep.memory.upgrade_mode = modes.upgrading;
+    }
+    else if (creep.memory.upgrade_mode == modes.upgrading && creep.energy == 0) {
+        creep.memory.upgrade_mode = modes.harvesting;
+    }
+
+    if (creep.memory.upgrade_mode == modes.harvesting) {
         harvest(creep);
     }
-    else {
+    else if (creep.memory.upgrade_mode == modes.upgrading) {
         if (!util.try_upgrade(creep, creep.room.controller)) {
             creep.moveTo(creep.room.controller);
         }
+    }
+    else {
+        creep.memory.upgrade_mode = modes.harvesting;
     }
 }
 
