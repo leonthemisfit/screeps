@@ -19,6 +19,12 @@ function run(creep) {
     else if (creep.memory.build_mode == modes.building && creep.carry.energy == 0) {
         creep.memory.build_mode = modes.harvesting;
     }
+    else if (util.can_harvest_energy(creep)) {
+        creep.memory.build_mode = modes.harvesting;
+    }
+    else {
+        creep.memory.build_mode = modes.building;
+    }
 
     if (creep.memory.build_mode == modes.harvesting) {
         harvest(creep);
