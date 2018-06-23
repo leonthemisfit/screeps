@@ -13,11 +13,11 @@ function harvest(creep) {
 }
 
 function check_mode(creep) {
-    if (creep.build_mode == modes.harvesting) {
-        creep.build_mode = util.can_harvest_energy(creep) ? modes.harvesting : modes.building;
+    if (creep.memory.build_mode == modes.harvesting) {
+        creep.memory.build_mode = util.can_harvest_energy(creep) ? modes.harvesting : modes.building;
     }
-    else if (creep.build_mode == modes.building) {
-        creep.build_mode = creep.carry.energy > 0 ? modes.building : modes.harvesting;
+    else if (creep.memory.build_mode == modes.building) {
+        creep.memory.build_mode = creep.carry.energy > 0 ? modes.building : modes.harvesting;
     }
 }
 
