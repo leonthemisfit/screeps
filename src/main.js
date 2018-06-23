@@ -26,7 +26,7 @@ function autospawn() {
             var template = worker_spawns[i];
             if (util.can_spawn(spawner, template.body)) {
                 var name = WORKER_NAME + worker_id++;
-                if (util.try_spawn(spawner, name, parts, DEFAULT_ROLE)) {
+                if (util.try_spawn(spawner, name, template.body, DEFAULT_ROLE)) {
                     Game.creeps[name].memory.type = template.name;
                     console.log("Created new creep of type '" + template.name + "'");
                 }
