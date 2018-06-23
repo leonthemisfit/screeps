@@ -11,6 +11,7 @@ var roles = {
 const WORKER_LIMIT = 2;
 const DEFAULT_ROLE = "harvester";
 const WORKER_NAME = "worker_";
+const DECAY_THRESHOLD = 3000;
 
 var worker_id = 20;
 
@@ -26,6 +27,8 @@ function log_spawn(template) {
     msg += cost.calculate_cost(template.body);
     console.log(msg);
 }
+
+var decay_check = (creep) => creep.room.controller.ticksToDowngrade < DECAY_THRESHOLD;
 
 function autospawn() {
     var workers = _.filter(Game.creeps, worker_filter);
@@ -47,16 +50,15 @@ function autospawn() {
 
 function role_check() {
     var workers = _.filter(Game.creeps, worker_filter);
-    if (util.is_spawner_full(Game.spawns.Main)) {
-        for (var i in workers) {
-            var creep = workers[i];
+    for (var i in workers) {
+        var creep = workers[i];
+        if (decay_check(creep)) {
+            creep.memory.role = "upgrader";
+        }
+        else if (util.is_spawner_full(Game.spawns.Main)) {
             creep.memory.role = util.is_construction(creep) ? "builder" : "upgrader";
         }
-        autospawn();
-    }
-    else {
-        for (var i in workers) {
-            var creep = workers[i];
+        else {
             creep.memory.role = "harvester";
         }
     }
