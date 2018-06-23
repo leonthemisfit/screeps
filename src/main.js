@@ -10,15 +10,16 @@ var roles = {
 const WORKER_LIMIT = 2;
 var worker_id = 20;
 
-var worker_filter = (creep) => creep.memory.role == "harvester" || creep.memory.role == "upgrader";
+var worker_roles = ["harvester", "upgrader", "builder"];
+var worker_filter = (creep) => worker_roles.includes(creep.memory.role);
 
 var worker_spawns = [creeps.hard_worker, creeps.basic_worker];
 
 module.exports.loop = () => {
     util.clean_memory();
 
+    var workers = _.filter(Game.creeps, worker_filter);
     if (util.is_spawner_full(Game.spawns.Main)) {
-        var workers = _.filter(Game.creeps, (creep) => worker_filter);
         for (var i in workers) {
             var creep = workers[i];
             creep.memory.role = util.is_construction(creep) ? "builder" : "upgrader";
@@ -33,9 +34,8 @@ module.exports.loop = () => {
         }
     }
     else {
-        var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == "upgrader");
-        for (var i in upgraders) {
-            var creep = upgraders[i];
+        for (var i in workers) {
+            var creep = workers[i];
             creep.memory.role = "harvester";
         }
     }
