@@ -24,6 +24,8 @@ util.can_spawn = (spawner, parts) => spawner.spawnCreep(parts, "test", { dryRun:
 
 util.is_construction = (creep) => util.find_construction(creep) ? true : false;
 
+util.find_extensions = (room) => room.find(FIND_STRUCTURES, { filter: (structure) => structure == STRUCTURE_EXTENSION });
+
 util.clean_memory = () => {
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {

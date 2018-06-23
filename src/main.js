@@ -62,8 +62,22 @@ function role_check() {
             creep.memory.role = "upgrader";
         }
         else if (util.is_spawner_full(Game.spawns.Main)) {
-            creep.memory.role = util.is_construction(creep) ? "builder" : "upgrader";
-            autospawn();
+            var extensions = util.find_extensions(creep.room);
+            var ext_needed = false;
+            for (var i in extensions) {
+                var ext = extensions[i];
+                if (ext.energy < ext.energyCapacity) {
+                    ext_needed = true;
+                    break;
+                }
+            }
+            if (ext_needed) {
+                creep.memory.role = "harvester";
+            }
+            else {
+                creep.memory.role = util.is_construction(creep) ? "builder" : "upgrader";
+                autospawn();
+            }
         }
         else {
             creep.memory.role = "harvester";
