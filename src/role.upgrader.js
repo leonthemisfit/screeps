@@ -26,7 +26,7 @@ function run(creep) {
         harvest(creep);
     }
     else if (creep.memory.upgrade_mode == modes.upgrading) {
-        if (!util.try_upgrade(creep, creep.room.controller)) {
+        if (creep.memory.flag_id === undefined) {
             if (creep.memory.moving) {
                 return;
             }
@@ -39,14 +39,16 @@ function run(creep) {
                     flag.memory.available = false;
                     creep.memory.moving = true;
                     creep.memory.flag_id = id;
-                    creep.moveTo(flag);
                     break;
                 }
             }
         }
+        else if (creep.pos != Game.flags[creep.memory.flag_id]) {
+            creep.moveTo(Game.flags[creep.memory.flag_id]);
+        }
         else {
             creep.memory.moving = false;
-            if (creep.carry.energy == 0) {
+            if (!util.try_upgrade(creep, creep.room.controller)) {
                 var flag = Game.flags[creep.memory.flag_id];
                 flag.memory.available = true;
                 delete creep.memory.flag_id;
