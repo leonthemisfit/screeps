@@ -70,6 +70,12 @@ util.find_broken_wall = (room) => {
             s.hits < Memory.wall_threshold;
         }
     );
+
+    if (walls.length == 0 && Memory.wall_threshold < Memory.wall_max) {
+        Memory.wall_threshold += 1000;
+        return util.find_broken_wall(room);
+    }
+
     return walls;
 }
 
