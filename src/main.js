@@ -5,8 +5,9 @@ var cost = require("build_cost");
 var roles = {
     harvester: require("role.harvester"),
     upgrader: require("role.upgrader"),
-    builder: require("role.builder")
-}
+    builder: require("role.builder"),
+    fixer: require("role.fixer")
+};
 
 const DEFAULT_ROLE = "harvester";
 const WORKER_NAME = "worker_";
@@ -15,7 +16,7 @@ Memory.worker_id = util.coalesce([Memory.worker_id, 0]);
 Memory.worker_limit = util.coalesce([Memory.worker_limit, 3]);
 Memory.decay_threshold = util.coalesce([Memory.decay_threshold, 4500]);
 
-var worker_roles = ["harvester", "upgrader", "builder"];
+var worker_roles = ["harvester", "upgrader", "builder", "fixer"];
 var worker_filter = (creep) => worker_roles.includes(creep.memory.role);
 
 var worker_spawns = [
@@ -62,6 +63,9 @@ function role_check() {
         var creep = workers[i];
         if (decay_check(creep)) {
             creep.memory.role = "upgrader";
+        }
+        else if (util.are_broken_walls(creep.room)) {
+            creep.memory.role = "fixer";
         }
         else if (util.is_spawner_full(Game.spawns.Main)) {
             var extensions = util.find_extensions(creep.room);

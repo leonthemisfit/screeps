@@ -62,4 +62,23 @@ util.coalesce = (args) => {
     return null;
 };
 
+util.find_broken_wall = (room) => {
+    return room.find(FIND_MY_STRUCTURES, { 
+        filter: (s) => {
+            s.structureType == STRUCTURE_WALL &&
+            s.hits < s.hitsMax
+        }
+    });
+}
+
+util.get_broken_wall = (room) => {
+    var walls = util.find_broken_wall(room);
+    if (walls.length > 0) {
+        return walls[0];
+    }
+    return null;
+}
+
+util.are_broken_walls = (room) => util.get_broken_wall(room) !== null;
+
 module.exports = util;
