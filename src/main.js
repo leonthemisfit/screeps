@@ -95,8 +95,20 @@ function do_roles() {
     }
 }
 
+function clean_flags() {
+    for (var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        if (creep.memory.role != "upgrader" && creep.memory.flag_id !== undefined) {
+            var flag = Game.flags[creep.memory.flag_id];
+            flag.memory.available = true;
+            delete creep.memory.flag_id;
+        } 
+    }
+}
+
 module.exports.loop = () => {
     util.clean_memory();
     role_check();
+    clean_flags();
     do_roles();
 }
