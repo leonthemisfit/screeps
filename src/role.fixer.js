@@ -13,21 +13,21 @@ function harvest(creep) {
 }
 
 function check_mode(creep) {
-    if (creep.memory.build_mode == modes.harvesting) {
-        creep.memory.build_mode = util.can_harvest_energy(creep) ? modes.harvesting : modes.repairing;
+    if (creep.memory.repair_mode == modes.harvesting) {
+        creep.memory.repair_mode = util.can_harvest_energy(creep) ? modes.harvesting : modes.repairing;
     }
-    else if (creep.memory.build_mode == modes.repairing) {
-        creep.memory.build_mode = creep.carry.energy > 0 ? modes.repairing : modes.harvesting;
+    else if (creep.memory.repair_mode == modes.repairing) {
+        creep.memory.repair_mode = creep.carry.energy > 0 ? modes.repairing : modes.harvesting;
     }
 }
 
 function run(creep) {
     check_mode(creep);
 
-    if (creep.memory.build_mode == modes.harvesting) {
+    if (creep.memory.repair_mode == modes.harvesting) {
         harvest(creep);
     }
-    else if (creep.memory.build_mode == modes.repairing) {
+    else if (creep.memory.repair_mode == modes.repairing) {
         var wall = util.get_broken_wall;
         if (wall !== null) {
             if (creep.repair(wall) == ERR_NOT_IN_RANGE) {
@@ -36,7 +36,7 @@ function run(creep) {
         }
     }
     else {
-        creep.memory.build_mode = modes.harvesting;
+        creep.memory.repair_mode = modes.harvesting;
     }
 }
 
