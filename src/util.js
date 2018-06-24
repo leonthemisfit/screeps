@@ -67,7 +67,7 @@ util.find_broken_wall = (room) => {
     var walls = _.filter(structures, 
         (s) => {
             return s.structureType == STRUCTURE_WALL &&
-            s.hits < s.hitsMax;
+            s.hits < Memory.wall_threshold;
         }
     );
     return walls;
