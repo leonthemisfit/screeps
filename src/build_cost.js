@@ -1,3 +1,5 @@
+"use strict";
+
 var parts = {};
 
 parts[MOVE] = 50;
