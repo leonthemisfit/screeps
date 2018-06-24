@@ -41,7 +41,7 @@ function run(creep) {
                 }
             }
         }
-        else if (creep.pos != Game.flags[creep.memory.flag_id].pos) {
+        else if (!util.pos_comp(creep.pos, Game.flags[creep.memory.flag_id].pos)) {
             creep.moveTo(Game.flags[creep.memory.flag_id]);
         }
         else {

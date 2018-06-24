@@ -26,6 +26,13 @@ util.is_construction = (creep) => util.find_construction(creep) ? true : false;
 
 util.find_extensions = (room) => room.find(FIND_STRUCTURES, { filter: (structure) => structure.structureType == STRUCTURE_EXTENSION });
 
+util.pos_comp = (left, right) => {
+    var x = left.x == right.x;
+    var y = left.y == right.y;
+    var r = left.room == right.room;
+    return x && y && r;
+}
+
 util.clean_memory = () => {
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
