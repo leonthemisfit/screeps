@@ -8,12 +8,12 @@ var roles = {
     builder: require("role.builder")
 }
 
-const WORKER_LIMIT = 3;
 const DEFAULT_ROLE = "harvester";
 const WORKER_NAME = "worker_";
-const DECAY_THRESHOLD = 4500;
 
 Memory.worker_id = util.coalesce([Memory.worker_id, 0]);
+Memory.worker_limit = util.coalesce([Memory.worker_limit, 3]);
+Memory.decay_threshold = util.coalesce([Memory.decay_threshold, 4500]);
 
 var worker_roles = ["harvester", "upgrader", "builder"];
 var worker_filter = (creep) => worker_roles.includes(creep.memory.role);
@@ -34,12 +34,12 @@ function log_spawn(template) {
     console.log(msg);
 }
 
-var decay_check = (creep) => creep.room.controller.ticksToDowngrade < DECAY_THRESHOLD;
+var decay_check = (creep) => creep.room.controller.ticksToDowngrade < Memory.decay_threshold;
 
 function autospawn() {
     var workers = _.filter(Game.creeps, worker_filter);
     var spawner = Game.spawns.Main;
-    if (workers.length < WORKER_LIMIT) {
+    if (workers.length < Memory.worker_limit) {
         for (var i = 0; i < worker_spawns.length; i++) {
             var template = worker_spawns[i];
             if (util.can_spawn(spawner, template.body)) {
