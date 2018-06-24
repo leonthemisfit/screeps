@@ -27,9 +27,6 @@ function run(creep) {
     }
     else if (creep.memory.upgrade_mode == modes.upgrading) {
         if (creep.memory.flag_id === undefined) {
-            if (creep.memory.moving) {
-                return;
-            }
             for (var i in flags) {
                 var id = flags[i];
                 var flag = Game.flags[id]
@@ -44,11 +41,10 @@ function run(creep) {
                 }
             }
         }
-        else if (creep.pos != Game.flags[creep.memory.flag_id]) {
+        else if (creep.pos != Game.flags[creep.memory.flag_id].pos) {
             creep.moveTo(Game.flags[creep.memory.flag_id]);
         }
         else {
-            creep.memory.moving = false;
             if (!util.try_upgrade(creep, creep.room.controller)) {
                 var flag = Game.flags[creep.memory.flag_id];
                 flag.memory.available = true;
