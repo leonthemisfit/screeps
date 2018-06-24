@@ -30,7 +30,8 @@ function run(creep) {
             if (creep.memory.moving) {
                 return;
             }
-            for (var id in flags) {
+            for (var i in flags) {
+                var id = flags[i];
                 var flag = Game.flags[id]
                 if (flag.memory.available === undefined) {
                     flag.memory.available = true;
