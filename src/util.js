@@ -1,3 +1,5 @@
+"use strict";
+
 var build_cost = require("build_cost");
 
 var util = {};

@@ -1,3 +1,7 @@
+"use strict";
+
+require("config");
+
 var util = require("util");
 var creeps = require("creeps");
 var cost = require("build_cost");
@@ -11,12 +15,6 @@ var roles = {
 
 const DEFAULT_ROLE = "harvester";
 const WORKER_NAME = "worker_";
-
-Memory.worker_id = util.coalesce([Memory.worker_id, 0]);
-Memory.worker_limit = util.coalesce([Memory.worker_limit, 3]);
-Memory.decay_threshold = util.coalesce([Memory.decay_threshold, 4500]);
-Memory.wall_threshold = util.coalesce([Memory.wall_threshold, 20000]);
-Memory.wall_max = util.coalesce([Memory.wall_max, 50000]);
 
 var worker_roles = ["harvester", "upgrader", "builder", "fixer"];
 var worker_filter = (creep) => worker_roles.includes(creep.memory.role);

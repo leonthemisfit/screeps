@@ -1,3 +1,5 @@
+"use strict";
+
 class CreepTemplate {
     constructor (body, name) {
         this.body = body;
