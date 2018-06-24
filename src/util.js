@@ -70,6 +70,7 @@ util.find_broken_wall = (room) => {
             s.hits < s.hitsMax;
         }
     );
+    return walls;
 }
 
 util.get_broken_wall = (room) => {
