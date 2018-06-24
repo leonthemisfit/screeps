@@ -13,7 +13,7 @@ const DEFAULT_ROLE = "harvester";
 const WORKER_NAME = "worker_";
 const DECAY_THRESHOLD = 4500;
 
-var worker_id = 20;
+Memory.worker_id = util.coalesce([Memory.worker_id, 0]);
 
 var worker_roles = ["harvester", "upgrader", "builder"];
 var worker_filter = (creep) => worker_roles.includes(creep.memory.role);
@@ -43,7 +43,7 @@ function autospawn() {
         for (var i = 0; i < worker_spawns.length; i++) {
             var template = worker_spawns[i];
             if (util.can_spawn(spawner, template.body)) {
-                var name = WORKER_NAME + worker_id++;
+                var name = WORKER_NAME + Memory.worker_id++;
                 if (util.try_spawn(spawner, name, template.body, DEFAULT_ROLE)) {
                     Game.creeps[name].memory.type = template.name;
                     log_spawn(template);

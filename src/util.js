@@ -41,4 +41,14 @@ util.find_construction = (creep) => {
     }
 }
 
+util.coalesce = (args) => {
+    for (var i = 0; i < args.length; i++) {
+        var val = args[i];
+        if (val !== null && val !== undefined) {
+            return val;
+        }
+    }
+    return null;
+};
+
 module.exports = util;
