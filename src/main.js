@@ -75,6 +75,8 @@ function role_check() {
             }
         }
 
+        if (full) autospawn();
+
         if (decay_check(creep)) {
             creep.memory.role = "upgrader";
         }
@@ -86,7 +88,6 @@ function role_check() {
         }
         else if (full) {
             creep.memory.role = util.is_construction(creep) ? "builder" : "upgrader";
-            autospawn();
         }
         else {
             creep.memory.role = "upgrader";
