@@ -107,8 +107,8 @@ function clean_flags() {
 }
 
 module.exports.loop = () => {
-    util.clean_memory();
     role_check();
     clean_flags();
     do_roles();
+    util.clean_memory();
 }
