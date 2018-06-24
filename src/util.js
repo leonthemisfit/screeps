@@ -36,6 +36,10 @@ util.pos_comp = (left, right) => {
 util.clean_memory = () => {
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
+            if (Memory.creeps[name].flag_id) {
+                var flag = Game.flags[Memory.creeps[name].flag_id];
+                flag.memory.available = true;
+            }
             delete Memory.creeps[name];
         }
     }
