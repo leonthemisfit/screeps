@@ -19,6 +19,7 @@ var worker_roles = ["harvester", "upgrader", "builder"];
 var worker_filter = (creep) => worker_roles.includes(creep.memory.role);
 
 var worker_spawns = [
+    creeps.heavy_worker,
     creeps.hardfast_worker,
     creeps.hard_worker,
     creeps.balanced_worker,
