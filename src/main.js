@@ -62,32 +62,34 @@ function role_check() {
     var workers = _.filter(Game.creeps, worker_filter);
     for (var i in workers) {
         var creep = workers[i];
+
+        var extensions = util.find_extensions(creep.room);
+        var ext_needed = false;
+        var spn_needed = !util.is_spawner_full(Game.spwans.Main);
+        var full = !ext_needed && !spn_needed;
+        for (var i in extensions) {
+            var ext = extensions[i];
+            if (ext.energy < ext.energyCapacity) {
+                ext_needed = true;
+                break;
+            }
+        }
+
         if (decay_check(creep)) {
             creep.memory.role = "upgrader";
+        }
+        else if (ext_needed || spn_needed) {
+            creep.memory.role = "harvester";
         }
         else if (util.are_broken_walls(creep.room)) {
             creep.memory.role = "fixer";
         }
-        else if (util.is_spawner_full(Game.spawns.Main)) {
-            var extensions = util.find_extensions(creep.room);
-            var ext_needed = false;
-            for (var i in extensions) {
-                var ext = extensions[i];
-                if (ext.energy < ext.energyCapacity) {
-                    ext_needed = true;
-                    break;
-                }
-            }
-            if (ext_needed) {
-                creep.memory.role = "harvester";
-            }
-            else {
-                creep.memory.role = util.is_construction(creep) ? "builder" : "upgrader";
-                autospawn();
-            }
+        else if (full) {
+            creep.memory.role = util.is_construction(creep) ? "builder" : "upgrader";
+            autospawn();
         }
         else {
-            creep.memory.role = "harvester";
+            creep.memory.role = "upgrader";
         }
     }
 }
