@@ -63,7 +63,7 @@ util.coalesce = (args) => {
 };
 
 util.find_broken_wall = (room) => {
-    var structures = room.find(FIND_MY_STRUCTURES);
+    var structures = room.find(FIND_STRUCTURES);
     var walls = _.filter(structures, 
         (s) => {
             return s.structureType == STRUCTURE_WALL &&
