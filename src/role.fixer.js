@@ -31,7 +31,7 @@ function run(creep) {
         harvest(creep);
     }
     else if (creep.memory.repair_mode == modes.repairing) {
-        var wall = util.get_broken_wall;
+        var wall = util.get_broken_wall(creep.room);
         if (wall !== null) {
             if (creep.repair(wall) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(wall);
