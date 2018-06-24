@@ -65,7 +65,7 @@ function role_check() {
 
         var extensions = util.find_extensions(creep.room);
         var ext_needed = false;
-        var spn_needed = !util.is_spawner_full(Game.spwans.Main);
+        var spn_needed = !util.is_spawner_full(Game.spawns.Main);
         var full = !ext_needed && !spn_needed;
         for (var i in extensions) {
             var ext = extensions[i];
