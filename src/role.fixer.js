@@ -19,6 +19,9 @@ function check_mode(creep) {
     else if (creep.memory.repair_mode == modes.repairing) {
         creep.memory.repair_mode = creep.carry.energy > 0 ? modes.repairing : modes.harvesting;
     }
+    else if (creep.carry.energy > 0) {
+        creep.memory.repair_mode = modes.repairing;
+    }
 }
 
 function run(creep) {
