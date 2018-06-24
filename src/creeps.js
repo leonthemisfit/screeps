@@ -11,5 +11,6 @@ module.exports = {
     balanced_worker: new CreepTemplate([WORK, WORK, CARRY, MOVE, MOVE], "Balanced Worker"),
     hard_worker: new CreepTemplate([WORK, WORK, WORK, CARRY, MOVE], "Hard Worker"),
     hardfast_worker: new CreepTemplate([WORK, WORK, WORK, CARRY, MOVE, MOVE], "Hard & Fast Worker"),
-    heavy_worker: new CreepTemplate([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], "Heavy Worker")
+    heavy_worker: new CreepTemplate([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], "Heavy Worker"),
+    fastheavy_worker: new CreepTemplate([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], "Fast Heavy Worker")
 };
